@@ -1,0 +1,25 @@
+name: Vérifications du site
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Lire le dépôt
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Vérifier le HTML
+        run: npx --yes htmlhint@1.9.2 --config .htmlhintrc '**/*.html'
+      - name: Vérifier les chemins et liens internes
+        if: ${{ !cancelled() }}
+        run: python3 scripts/check_site.py
