@@ -1,0 +1,1514 @@
+	<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mon endroit.</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eeeae3;
+    color: #292522;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   ACCUEIL
+========================= */
+
+.accueil {
+    max-width: 1000px;
+    margin: auto;
+    padding: 65px 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 55px;
+    min-height: 520px;
+}
+
+.photo-principale {
+    width: 250px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 28px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+    flex-shrink: 0;
+}
+
+.accueil-texte {
+    max-width: 500px;
+}
+
+.accueil-texte h1 {
+    font-family: Georgia, serif;
+    font-size: 62px;
+    font-weight: normal;
+    margin: 0;
+    letter-spacing: -2px;
+}
+
+.phrase-principale {
+    font-family: Georgia, serif;
+    font-size: 26px;
+    color: #755c4d;
+    margin: 18px 0;
+    line-height: 1.45;
+}
+
+.phrase-secondaire {
+    color: #77706b;
+    font-size: 16px;
+}
+
+#anniversaire {
+    margin-top: 25px;
+    color: #a16b50;
+    font-size: 14px;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+nav {
+    max-width: 1000px;
+    margin: auto;
+    padding: 22px 10px;
+    text-align: center;
+    border-top: 1px solid #d4cec5;
+    border-bottom: 1px solid #d4cec5;
+}
+
+nav a {
+    text-decoration: none;
+    color: #665f5a;
+    margin: 0 12px;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #a16b50;
+}
+
+
+/* =========================
+   GENERAL
+========================= */
+
+main {
+    max-width: 1000px;
+    margin: auto;
+    padding: 70px 30px;
+}
+
+section {
+    margin-bottom: 120px;
+}
+
+.petit-titre {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 11px;
+    color: #a16b50;
+}
+
+h2 {
+    font-family: Georgia, serif;
+    font-size: 42px;
+    font-weight: normal;
+    line-height: 1.2;
+    margin: 5px 0 18px;
+}
+
+.intro {
+    max-width: 620px;
+    color: #706a65;
+    font-size: 18px;
+}
+
+
+/* =========================
+   SOUVENIRS
+========================= */
+
+.galerie-souvenirs {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.carte-souvenir {
+    background: #f8f5f0;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+}
+
+.souvenir {
+    height: 210px;
+    overflow: hidden;
+    background: #d8d2cb;
+}
+
+.souvenir img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.carte-souvenir:hover .souvenir img {
+    transform: scale(1.035);
+}
+
+.lieu {
+    padding: 14px 16px 16px;
+}
+
+.lieu h3 {
+    font-family: Georgia, serif;
+    font-size: 20px;
+    font-weight: normal;
+    margin: 0 0 3px;
+}
+
+.lieu p {
+    margin: 0 0 7px;
+    color: #817872;
+    font-size: 13px;
+}
+
+.lieu a {
+    color: #a16b50;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.lieu a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   RESPIRER
+========================= */
+
+.pause {
+    min-height: 320px;
+    padding: 45px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #332b27, #76594b);
+    color: white;
+    display: flex;
+    align-items: flex-end;
+}
+
+.pause h2 {
+    margin-bottom: 8px;
+}
+
+.pause p {
+    color: #e4ddd8;
+    font-size: 17px;
+    margin-bottom: 0;
+}
+
+.respirelax {
+    margin-top: 25px;
+}
+
+.respirelax strong {
+    display: block;
+    font-family: Georgia, serif;
+    font-size: 21px;
+    font-weight: normal;
+}
+
+.respirelax span {
+    display: block;
+    color: #d8cec8;
+    font-size: 14px;
+    margin: 3px 0 14px;
+}
+
+.respirelax-boutons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.respirelax-boutons a {
+    display: inline-block;
+    padding: 9px 15px;
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 25px;
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.respirelax-boutons a:hover {
+    background: white;
+    color: #332b27;
+}
+
+
+/* =========================
+   MUSIQUE
+========================= */
+
+.boutons-musique {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin: 28px 0 20px;
+}
+
+.bouton-musique {
+    border: 1px solid #c9bcb1;
+    background: transparent;
+    padding: 9px 15px;
+    border-radius: 25px;
+    cursor: pointer;
+    color: #655d57;
+}
+
+.bouton-musique:hover,
+.bouton-musique.actif {
+    background: #332b27;
+    color: white;
+    border-color: #332b27;
+}
+
+.carte-musique {
+    max-width: 650px;
+    background: #f8f5f0;
+    padding: 20px;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.pochette-musique {
+    width: 230px;
+    height: 230px;
+    object-fit: cover;
+    border-radius: 18px;
+    display: block;
+    flex-shrink: 0;
+}
+
+.musique-texte small {
+    color: #a16b50;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 11px;
+}
+
+.musique-texte h3 {
+    font-family: Georgia, serif;
+    font-size: 25px;
+    font-weight: normal;
+    line-height: 1.25;
+    margin: 6px 0 0;
+}
+
+.musique-texte p {
+    color: #777;
+    margin: 3px 0 10px;
+}
+
+.musique-texte a {
+    color: #a16b50;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.morceau-secondaire {
+    border-top: 1px solid #ddd2c8;
+    margin-top: 18px;
+    padding-top: 15px;
+}
+
+
+/* =========================
+   SOURIRE
+========================= */
+
+.videos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 30px;
+}
+
+.video {
+    padding: 14px;
+    background: #f8f5f0;
+    border-radius: 22px;
+}
+
+.video iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+    border-radius: 15px;
+    display: block;
+}
+
+.video p {
+    margin: 10px 4px 2px;
+    color: #655f5a;
+}
+
+
+/* =========================
+   SERIES
+========================= */
+
+.galerie-series {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-top: 32px;
+}
+
+.serie-mini {
+    height: 245px;
+    padding: 0;
+    border: 0;
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    background: #222;
+    transition: transform 0.25s;
+}
+
+.serie-mini:hover {
+    transform: translateY(-5px);
+}
+
+.serie-mini img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.serie-mini::after {
+    content: "";
+    position: absolute;
+    inset: 45% 0 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.85));
+}
+
+.serie-mini span {
+    position: absolute;
+    z-index: 2;
+    left: 12px;
+    right: 8px;
+    bottom: 12px;
+    color: white;
+    font-weight: bold;
+    text-align: left;
+}
+
+.serie-mini.active {
+    outline: 3px solid #a16b50;
+    outline-offset: 3px;
+}
+
+.serie-info {
+    margin-top: 25px;
+    padding: 30px 35px;
+    background: #302a27;
+    color: white;
+    border-radius: 24px;
+}
+
+.serie-info small {
+    color: #d7a58c;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 11px;
+}
+
+.serie-info h3 {
+    font-family: Georgia, serif;
+    font-size: 31px;
+    font-weight: normal;
+    margin: 5px 0;
+}
+
+.serie-info p {
+    color: #ddd6d2;
+}
+
+.serie-info a {
+    color: #d7a58c;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+/* =========================
+   CINEMA
+========================= */
+
+.cinema {
+    min-height: 260px;
+    border-radius: 30px;
+    padding: 40px;
+    display: flex;
+    align-items: flex-end;
+    color: white;
+    background: linear-gradient(135deg, #9a6a53, #302a27);
+}
+
+.cinema h3 {
+    font-family: Georgia, serif;
+    font-size: 32px;
+    font-weight: normal;
+    margin: 0;
+}
+
+.cinema p {
+    color: #eee5df;
+}
+
+
+/* =========================
+   FIN
+========================= */
+
+.fin {
+    min-height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.fin h2 {
+    font-size: 50px;
+}
+
+.fin p {
+    color: #817873;
+}
+
+footer {
+    text-align: center;
+    padding: 35px;
+    color: #938b85;
+    font-size: 13px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width: 800px) {
+
+    .accueil {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .photo-principale {
+        width: 220px;
+        height: 270px;
+    }
+
+    .accueil-texte h1 {
+        font-size: 50px;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 6px 8px;
+    }
+
+    .galerie-souvenirs {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .souvenir {
+        height: 190px;
+    }
+
+    .carte-musique {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .pochette-musique {
+        width: 200px;
+        height: 200px;
+    }
+
+    .videos {
+        grid-template-columns: 1fr;
+    }
+
+    .galerie-series {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .serie-mini {
+        height: 230px;
+    }
+}
+
+@media(max-width: 520px) {
+
+    .galerie-souvenirs {
+        grid-template-columns: 1fr;
+    }
+
+    .souvenir {
+        height: 230px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ACCUEIL -->
+
+<header class="accueil">
+
+    <img class="photo-principale"
+         src="images/photo.jpg"
+         alt="Souvenir">
+
+    <div class="accueil-texte">
+
+        <h1>Mon endroit.</h1>
+
+        <div class="phrase-principale">
+            Un condensé de ce qui m'apaise,
+            me fait sourire et me ramène à l'essentiel.
+        </div>
+
+        <p class="phrase-secondaire">
+            Des images. Des souvenirs. Des sons.
+            Des moments. Rien à expliquer.
+        </p>
+
+        <div id="anniversaire"></div>
+
+    </div>
+
+</header>
+
+
+<!-- NAVIGATION -->
+
+<nav>
+    <a href="#souvenirs">Souvenirs</a>
+    <a href="#respirer">Respirer</a>
+    <a href="#musique">Écouter</a>
+    <a href="#sourire">Sourire</a>
+    <a href="#series">S'évader</a>
+    <a href="#cinema">Cinéma</a>
+    <a href="#revenir">Revenir</a>
+</nav>
+
+
+<main>
+
+
+<!-- =========================
+     SOUVENIRS
+========================= -->
+
+<section id="souvenirs">
+
+    <div class="petit-titre">Quelques traces</div>
+
+    <h2>Des images où revenir.</h2>
+
+    <p class="intro">
+        Des endroits, des lumières, des horizons.
+        Certains sont des souvenirs.
+        D'autres donnent simplement envie de partir.
+    </p>
+
+
+    <div class="galerie-souvenirs">
+
+
+        <!-- LA PAZ -->
+
+        <div class="carte-souvenir">
+
+            <div class="souvenir">
+                <img src="images/photo002.jpg"
+                     alt="La Paz">
+            </div>
+
+            <div class="lieu">
+                <h3>La Paz</h3>
+                <p>Bolivie — au pied de l'Illimani.</p>
+            </div>
+
+        </div>
+
+
+        <!-- PHOTO 0 REMISE -->
+
+        <div class="carte-souvenir">
+
+            <div class="souvenir">
+                <img src="images/photo0.jpg"
+                     alt="Horizon">
+            </div>
+
+            <div class="lieu">
+                <h3>Horizon</h3>
+                <p>Juste regarder un peu plus loin.</p>
+            </div>
+
+        </div>
+
+
+        <!-- BORD DE L'EAU -->
+
+        <div class="carte-souvenir">
+
+            <div class="souvenir">
+                <img src="images/photo0bis1.jpg"
+                     alt="Au bord de l'eau">
+            </div>
+
+            <div class="lieu">
+                <h3>Au bord de l'eau</h3>
+                <p>Le bruit des vagues et rien d'autre.</p>
+            </div>
+
+        </div>
+
+
+        <!-- LE LARGE -->
+
+        <div class="carte-souvenir">
+
+            <div class="souvenir">
+                <img src="images/photo1.jpg"
+                     alt="Le large">
+            </div>
+
+            <div class="lieu">
+                <h3>Le large</h3>
+                <p>Quelques minutes sans regarder l'heure.</p>
+            </div>
+
+        </div>
+
+
+        <!-- LIMA -->
+
+        <div class="carte-souvenir">
+
+            <div class="souvenir">
+                <img src="images/photo2.jpg"
+                     alt="Lima">
+            </div>
+
+            <div class="lieu">
+                <h3>Lima</h3>
+                <p>Pérou — la côte Pacifique.</p>
+
+                <a href="https://www.peru.travel/fr"
+                   target="_blank">
+                    Découvrir le Pérou →
+                </a>
+            </div>
+
+        </div>
+
+
+        <!-- PANAMA -->
+
+        <div class="carte-souvenir">
+
+            <div class="souvenir">
+                <img src="images/photo01.jpg"
+                     alt="Panama City">
+            </div>
+
+            <div class="lieu">
+                <h3>Panama City</h3>
+                <p>Panama — skyline et Pacifique.</p>
+
+                <a href="https://www.tourismpanama.com/"
+                   target="_blank">
+                    Découvrir le Panama →
+                </a>
+            </div>
+
+        </div>
+
+
+        <!-- ATLANTA -->
+
+        <div class="carte-souvenir">
+
+            <div class="souvenir">
+                <img src="images/photo001.jpg"
+                     alt="Atlanta">
+            </div>
+
+            <div class="lieu">
+                <h3>Atlanta</h3>
+                <p>Géorgie, États-Unis — la ville de nuit.</p>
+
+                <a href="https://discoveratlanta.com/"
+                   target="_blank">
+                    Découvrir Atlanta →
+                </a>
+            </div>
+
+        </div>
+
+
+        <!-- MADRID -->
+
+        <div class="carte-souvenir">
+
+            <div class="souvenir">
+                <img src="images/photo02.jpg"
+                     alt="Madrid">
+            </div>
+
+            <div class="lieu">
+                <h3>Madrid</h3>
+                <p>Santiago Bernabéu.</p>
+
+                <a href="https://www.esmadrid.com/"
+                   target="_blank">
+                    Découvrir Madrid →
+                </a>
+            </div>
+
+        </div>
+
+
+        <!-- SINGAPOUR -->
+
+        <div class="carte-souvenir">
+
+            <div class="souvenir">
+                <img src="images/photo3.jpg"
+                     alt="Singapour">
+            </div>
+
+            <div class="lieu">
+                <h3>Singapour</h3>
+                <p>Lumières, architecture et baie.</p>
+
+                <a href="https://www.visitsingapore.com/"
+                   target="_blank">
+                    Découvrir Singapour →
+                </a>
+            </div>
+
+        </div>
+
+
+        <!-- FIN DE JOURNEE -->
+
+        <div class="carte-souvenir">
+
+            <div class="souvenir">
+                <img src="images/photo003.jpg"
+                     alt="Fin de journée">
+            </div>
+
+            <div class="lieu">
+                <h3>Fin de journée</h3>
+                <p>Le moment où tout ralentit.</p>
+            </div>
+
+        </div>
+
+
+        <!-- AILLEURS -->
+
+        <div class="carte-souvenir">
+
+            <div class="souvenir">
+                <img src="images/photo3bis.jpg"
+                     alt="Ailleurs">
+            </div>
+
+            <div class="lieu">
+                <h3>Ailleurs</h3>
+                <p>Un endroit où revenir.</p>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     RESPIRER
+========================= -->
+
+<section id="respirer">
+
+    <div class="pause">
+
+        <div>
+
+            <div class="petit-titre">Pause</div>
+
+            <h2>Respirer un peu.</h2>
+
+            <p>
+                Rien à faire ici.
+                Rien à réussir.
+                Juste quelques minutes pour moi.
+            </p>
+
+            <div class="respirelax">
+
+                <strong>RespiRelax+</strong>
+
+                <span>
+                    Quelques minutes pour ralentir.
+                </span>
+
+                <div class="respirelax-boutons">
+
+                    <a href="https://apps.apple.com/fr/app/respirelax/id515900420"
+                       target="_blank">
+                         iPhone / iPad
+                    </a>
+
+                    <a href="https://play.google.com/store/apps/details?id=com.thermesallevard.respi_relax"
+                       target="_blank">
+                        Android
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     MUSIQUE
+========================= -->
+
+<section id="musique">
+
+    <div class="petit-titre">Écouter</div>
+
+    <h2>
+        Des sons qui me ramènent quelque part.
+    </h2>
+
+
+    <div class="boutons-musique">
+
+        <button class="bouton-musique actif"
+                onclick="changerMusique('rap', this)">
+            RAP
+        </button>
+
+        <button class="bouton-musique"
+                onclick="changerMusique('rnb', this)">
+            R&B
+        </button>
+
+        <button class="bouton-musique"
+                onclick="changerMusique('jazz', this)">
+            JAZZ / SOULFUL
+        </button>
+
+        <button class="bouton-musique"
+                onclick="changerMusique('psyche', this)">
+            PSYCHÉ / INDIE
+        </button>
+
+    </div>
+
+
+    <div class="carte-musique"
+         id="carte-musique">
+
+        <img class="pochette-musique"
+             src="images/photo4.jpg"
+             alt="PARTYNEXTDOOR">
+
+        <div class="musique-texte">
+
+            <small>En boucle en ce moment</small>
+
+            <h3>PARTYNEXTDOOR</h3>
+
+            <p>Break from Toronto</p>
+
+            <a href="https://www.youtube.com/watch?v=lXYq9ImJIN8"
+               target="_blank">
+                ▶ Écouter
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SOURIRE
+========================= -->
+
+<section id="sourire">
+
+    <div class="petit-titre">Sourire</div>
+
+    <h2>
+        Deux trucs qui fonctionnent toujours.
+    </h2>
+
+    <div class="videos">
+
+        <div class="video">
+
+          <iframe
+    src="https://www.youtube.com/embed/ig81HffBCQE?start=76&end=120&controls=0&rel=0&modestbranding=1&playsinline=1"
+    title="La Flamme - extrait"
+    allow="accelerometer; autoplay; encrypted-media; picture-in-picture"
+    allowfullscreen>
+</iframe>
+
+            <p>La Flamme — Docteur Juiphe</p>
+
+        </div>
+
+
+        <div class="video">
+
+            <iframe
+                src="https://www.youtube.com/embed/3URNc_vqXv4?start=225&end=287"
+                title="Fou rire"
+                allowfullscreen>
+            </iframe>
+
+            <p>Ce fou rire.</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SERIES
+========================= -->
+
+<section id="series">
+
+    <div class="petit-titre">S'évader</div>
+
+    <h2>
+        Des univers où retourner.
+    </h2>
+
+
+    <div class="galerie-series">
+
+        <button class="serie-mini active"
+                onclick="changerSerie('gentlemen', this)">
+
+            <img src="images/photo8.jpg"
+                 alt="The Gentlemen">
+
+            <span>The Gentlemen</span>
+
+        </button>
+
+
+        <button class="serie-mini"
+                onclick="changerSerie('reacher', this)">
+
+            <img src="images/photo9.jpg"
+                 alt="Reacher">
+
+            <span>Reacher</span>
+
+        </button>
+
+
+        <button class="serie-mini"
+                onclick="changerSerie('stranger', this)">
+
+            <img src="images/photo10.jpg"
+                 alt="Stranger Things">
+
+            <span>Stranger Things</span>
+
+        </button>
+
+
+        <button class="serie-mini"
+                onclick="changerSerie('billions', this)">
+
+            <img src="images/photo11.jpg"
+                 alt="Billions">
+
+            <span>Billions</span>
+
+        </button>
+
+
+        <button class="serie-mini"
+                onclick="changerSerie('snowfall', this)">
+
+            <img src="images/photo12.jpg"
+                 alt="Snowfall">
+
+            <span>Snowfall</span>
+
+        </button>
+
+    </div>
+
+
+    <div class="serie-info"
+         id="serie-info">
+
+        <small>Un univers où retourner</small>
+
+        <h3>The Gentlemen</h3>
+
+        <p>
+            Élégance britannique,
+            humour noir et monde du crime.
+        </p>
+
+        <a href="https://www.netflix.com/fr/title/81437051"
+           target="_blank">
+            Ouvrir →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CINEMA
+========================= -->
+
+<section id="cinema">
+
+    <div class="petit-titre">Cinéma</div>
+
+    <h2>
+        Des scènes qui restent.
+    </h2>
+
+    <div class="cinema">
+
+        <div>
+            <h3>La séance viendra.</h3>
+
+            <p>
+                Des films. Des scènes. Des souvenirs.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FIN
+========================= -->
+
+<section class="fin"
+         id="revenir">
+
+    <div>
+
+        <div class="petit-titre">
+            Pour aujourd'hui
+        </div>
+
+        <h2>C'est assez.</h2>
+
+        <p>
+            Je pourrai toujours revenir.
+        </p>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<footer>
+    Mon endroit.
+</footer>
+
+
+<script>
+
+/* =========================
+   MUSIQUE
+========================= */
+
+function changerMusique(style, bouton) {
+
+    const carte =
+        document.getElementById("carte-musique");
+
+    document
+        .querySelectorAll(".bouton-musique")
+        .forEach(function(b) {
+            b.classList.remove("actif");
+        });
+
+    bouton.classList.add("actif");
+
+
+    if (style === "rap") {
+
+        carte.innerHTML = `
+            <img class="pochette-musique"
+                 src="images/photo4.jpg">
+
+            <div class="musique-texte">
+
+                <small>En boucle en ce moment</small>
+
+                <h3>PARTYNEXTDOOR</h3>
+
+                <p>Break from Toronto</p>
+
+                <a href="https://www.youtube.com/watch?v=lXYq9ImJIN8"
+                   target="_blank">
+                    ▶ Écouter
+                </a>
+
+            </div>
+        `;
+    }
+
+
+    if (style === "rnb") {
+
+        carte.innerHTML = `
+            <img class="pochette-musique"
+                 src="images/photo5.jpg">
+
+            <div class="musique-texte">
+
+                <small>R&B</small>
+
+                <h3>
+                    Victoria Monét feat. Bryson Tiller
+                </h3>
+
+                <p>
+                    We Might Even Be Falling In Love (Duet)
+                </p>
+
+                <a href="https://www.youtube.com/watch?v=wtCpkWilPsw"
+                   target="_blank">
+                    ▶ Écouter
+                </a>
+
+            </div>
+        `;
+    }
+
+
+    if (style === "jazz") {
+
+        carte.innerHTML = `
+            <img class="pochette-musique"
+                 src="images/photo6.jpg">
+
+            <div class="musique-texte">
+
+                <small>Jazz / Soulful</small>
+
+                <h3>Rob Mullins</h3>
+
+                <p>Wednesday</p>
+
+                <a href="https://www.youtube.com/watch?v=3s8Alwn-JwY"
+                   target="_blank">
+                    ▶ Écouter
+                </a>
+
+                <div class="morceau-secondaire">
+
+                    <h3>Cal Harris</h3>
+
+                    <p>Soulful</p>
+
+                    <a href="https://www.youtube.com/watch?v=8If9FQu6G0Q"
+                       target="_blank">
+                        ▶ Écouter
+                    </a>
+
+                </div>
+
+            </div>
+        `;
+    }
+
+
+    if (style === "psyche") {
+
+        carte.innerHTML = `
+            <img class="pochette-musique"
+                 src="images/photo7.jpg">
+
+            <div class="musique-texte">
+
+                <small>Psyché / Indie</small>
+
+                <h3>Tame Impala</h3>
+
+                <p>
+                    The Less I Know the Better
+                </p>
+
+                <a href="https://www.youtube.com/watch?v=2SUwOgmvzK4"
+                   target="_blank">
+                    ▶ Écouter
+                </a>
+
+            </div>
+        `;
+    }
+}
+
+
+/* =========================
+   SERIES
+========================= */
+
+function changerSerie(serie, bouton) {
+
+    const info =
+        document.getElementById("serie-info");
+
+    document
+        .querySelectorAll(".serie-mini")
+        .forEach(function(b) {
+            b.classList.remove("active");
+        });
+
+    bouton.classList.add("active");
+
+
+    if (serie === "gentlemen") {
+
+        info.innerHTML = `
+            <small>Un univers où retourner</small>
+
+            <h3>The Gentlemen</h3>
+
+            <p>
+                Élégance britannique,
+                humour noir et monde du crime.
+            </p>
+
+            <a href="https://www.netflix.com/fr/title/81437051"
+               target="_blank">
+                Ouvrir →
+            </a>
+        `;
+    }
+
+
+    if (serie === "reacher") {
+
+        info.innerHTML = `
+            <small>Un univers où retourner</small>
+
+            <h3>Reacher</h3>
+
+            <p>
+                Instinct, calme,
+                intelligence et puissance.
+            </p>
+
+            <a href="https://www.primevideo.com/-/fr/detail/0RTZ57DQ6PBHH29UN5JS7U7CW4"
+               target="_blank">
+                Ouvrir →
+            </a>
+        `;
+    }
+
+
+    if (serie === "stranger") {
+
+        info.innerHTML = `
+            <small>Un univers où retourner</small>
+
+            <h3>Stranger Things</h3>
+
+            <p>
+                Mystère, nostalgie,
+                amitié et étrange.
+            </p>
+
+            <a href="https://www.netflix.com/title/80057281"
+               target="_blank">
+                Ouvrir →
+            </a>
+        `;
+    }
+
+
+    if (serie === "billions") {
+
+        info.innerHTML = `
+            <small>Un univers où retourner</small>
+
+            <h3>Billions</h3>
+
+            <p>
+                Pouvoir, stratégie,
+                argent et ego.
+            </p>
+
+            <a href="https://www.paramountplus.com/shows/billions/"
+               target="_blank">
+                Ouvrir →
+            </a>
+        `;
+    }
+
+
+    if (serie === "snowfall") {
+
+        info.innerHTML = `
+            <small>Un univers où retourner</small>
+
+            <h3>Snowfall</h3>
+
+            <p>
+                Ambition, famille,
+                ascension et conséquences.
+            </p>
+
+            <a href="https://www.fxnetworks.com/shows/snowfall"
+               target="_blank">
+                Ouvrir →
+            </a>
+        `;
+    }
+}
+
+
+/* =========================
+   ANNIVERSAIRE
+========================= */
+
+function compteurAnniversaire() {
+
+    const maintenant = new Date();
+
+    const aujourdHui = new Date(
+        maintenant.getFullYear(),
+        maintenant.getMonth(),
+        maintenant.getDate()
+    );
+
+    let deuxAvril = new Date(
+        aujourdHui.getFullYear(),
+        3,
+        2
+    );
+
+    if (aujourdHui > deuxAvril) {
+
+        deuxAvril = new Date(
+            aujourdHui.getFullYear() + 1,
+            3,
+            2
+        );
+    }
+
+    const jours = Math.round(
+        (deuxAvril - aujourdHui)
+        /
+        (1000 * 60 * 60 * 24)
+    );
+
+
+    if (jours === 0) {
+
+        document
+            .getElementById("anniversaire")
+            .textContent =
+            "C'est le 2 avril. ✨";
+
+    } else {
+
+        document
+            .getElementById("anniversaire")
+            .textContent =
+            "J-" + jours + " avant le 2 avril.";
+    }
+}
+
+
+compteurAnniversaire();
+
+</script>
+
+
+</body>
+</html>
