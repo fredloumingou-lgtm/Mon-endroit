@@ -12,7 +12,7 @@ permissions:
 jobs:
   check:
     runs-on: ubuntu-24.04
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - name: Lire le dépôt
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -23,3 +23,9 @@ jobs:
       - name: Vérifier les chemins et liens internes
         if: ${{ !cancelled() }}
         run: python3 scripts/check_site.py
+      - name: Installer les outils de test navigateur
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Installer Chromium pour les tests
+        run: npx --no-install playwright install --with-deps chromium
+      - name: Tester le mobile, le clavier et l'accessibilité
+        run: npm test
