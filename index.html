@@ -594,16 +594,207 @@ footer {
     }
 }
 
+/* Navigation accessible, sans changer la palette du site. */
+:root {
+    --marge-navigation: 20px;
+}
+
+a:focus-visible,
+button:focus-visible,
+[tabindex="-1"]:focus-visible {
+    outline: 3px solid #302a27;
+    outline-offset: 4px;
+    box-shadow: 0 0 0 7px #f8f5f0;
+}
+
+.lien-evitement {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 40;
+    transform: translateY(-200%);
+    padding: 12px 18px;
+    border-radius: 12px;
+    background: #302a27;
+    color: white;
+}
+
+.lien-evitement:focus {
+    transform: translateY(0);
+}
+
+.navigation-liens {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+}
+
+.navigation-liens a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 8px 10px;
+    border-radius: 12px;
+    margin: 0;
+}
+
+.navigation-aide {
+    display: none;
+}
+
+section,
+main,
+#haut {
+    scroll-margin-top: var(--marge-navigation);
+}
+
+.lieu a,
+.musique-texte a,
+.serie-info a,
+.respirelax-boutons a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    min-width: 44px;
+    padding: 8px 4px;
+}
+
+.respirelax-boutons a {
+    padding: 9px 15px;
+}
+
+.bouton-musique {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+.retour-haut {
+    position: fixed;
+    right: max(16px, env(safe-area-inset-right));
+    bottom: max(16px, env(safe-area-inset-bottom));
+    z-index: 25;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 10px 16px;
+    border: 1px solid #c9bcb1;
+    border-radius: 25px;
+    background: #f8f5f0;
+    color: #655d57;
+    text-decoration: none;
+    font-size: 14px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+footer {
+    padding-bottom: calc(90px + env(safe-area-inset-bottom));
+}
+
+@media(max-width: 800px) {
+    :root {
+        --marge-navigation: 110px;
+    }
+
+    nav {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        padding: 6px 10px;
+        background: #eeeae3;
+    }
+
+    .navigation-aide {
+        display: block;
+        margin: 0;
+        color: #6e6560;
+        font-size: 12px;
+    }
+
+    .navigation-liens {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        padding: 7px;
+        scroll-padding-inline: 7px;
+    }
+
+    .navigation-liens a {
+        flex: 0 0 auto;
+        margin: 0;
+    }
+}
+
+/* Préserver la lecture quand l’écran est étroit ou fortement agrandi. */
+.photo-principale,
+.pochette-musique {
+    max-width: 100%;
+}
+
+.accueil-texte,
+.musique-texte,
+.pause > div,
+.cinema > div {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+
+main {
+    overflow-wrap: anywhere;
+}
+
+.serie-mini {
+    min-width: 0;
+}
+
+@media(max-width: 320px) {
+    main {
+        padding-inline: 20px;
+    }
+
+    .accueil {
+        padding-inline: 20px;
+    }
+
+    .pause,
+    .cinema,
+    .serie-info {
+        padding: 20px;
+    }
+
+    .galerie-series {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media(prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+    }
+}
+
 </style>
 </head>
 
 
 <body>
 
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+
 
 <!-- ACCUEIL -->
 
-<header class="accueil">
+<header class="accueil" id="haut" tabindex="-1">
 
     <img class="photo-principale"
          src="Images/photo.jpg"
@@ -632,7 +823,9 @@ footer {
 
 <!-- NAVIGATION -->
 
-<nav>
+<nav aria-label="Rubriques du site">
+    <p class="navigation-aide" id="aide-navigation">Rubriques · faites défiler ↔</p>
+    <div class="navigation-liens">
     <a href="#souvenirs">Souvenirs</a>
     <a href="#respirer">Respirer</a>
     <a href="#musique">Écouter</a>
@@ -640,21 +833,22 @@ footer {
     <a href="#series">S'évader</a>
     <a href="#cinema">Cinéma</a>
     <a href="#revenir">Revenir</a>
+    </div>
 </nav>
 
 
-<main>
+<main id="contenu" tabindex="-1">
 
 
 <!-- =========================
      SOUVENIRS
 ========================= -->
 
-<section id="souvenirs">
+<section id="souvenirs" aria-labelledby="titre-souvenirs" tabindex="-1">
 
     <div class="petit-titre">Quelques traces</div>
 
-    <h2>Des images où revenir.</h2>
+    <h2 id="titre-souvenirs">Des images où revenir.</h2>
 
     <p class="intro">
         Des endroits, des lumières, des horizons.
@@ -887,7 +1081,7 @@ footer {
      RESPIRER
 ========================= -->
 
-<section id="respirer">
+<section id="respirer" aria-labelledby="titre-respirer" tabindex="-1">
 
     <div class="pause">
 
@@ -895,7 +1089,7 @@ footer {
 
             <div class="petit-titre">Pause</div>
 
-            <h2>Respirer un peu.</h2>
+            <h2 id="titre-respirer">Respirer un peu.</h2>
 
             <p>
                 Rien à faire ici.
@@ -938,34 +1132,34 @@ footer {
      MUSIQUE
 ========================= -->
 
-<section id="musique">
+<section id="musique" aria-labelledby="titre-musique" tabindex="-1">
 
     <div class="petit-titre">Écouter</div>
 
-    <h2>
+    <h2 id="titre-musique">
         Des sons qui me ramènent quelque part.
     </h2>
 
 
-    <div class="boutons-musique">
+    <div class="boutons-musique" role="group" aria-label="Styles musicaux">
 
         <button class="bouton-musique actif"
-                onclick="changerMusique('rap', this)">
+                onclick="changerMusique('rap', this)" type="button" aria-pressed="true" aria-controls="carte-musique">
             RAP
         </button>
 
         <button class="bouton-musique"
-                onclick="changerMusique('rnb', this)">
+                onclick="changerMusique('rnb', this)" type="button" aria-pressed="false" aria-controls="carte-musique">
             R&B
         </button>
 
         <button class="bouton-musique"
-                onclick="changerMusique('jazz', this)">
+                onclick="changerMusique('jazz', this)" type="button" aria-pressed="false" aria-controls="carte-musique">
             JAZZ / SOULFUL
         </button>
 
         <button class="bouton-musique"
-                onclick="changerMusique('psyche', this)">
+                onclick="changerMusique('psyche', this)" type="button" aria-pressed="false" aria-controls="carte-musique">
             PSYCHÉ / INDIE
         </button>
 
@@ -973,7 +1167,7 @@ footer {
 
 
     <div class="carte-musique"
-         id="carte-musique">
+         id="carte-musique" role="region" aria-label="Sélection musicale" aria-live="polite" aria-atomic="true">
 
         <img class="pochette-musique"
              src="Images/photo4.jpg"
@@ -1003,11 +1197,11 @@ footer {
      SOURIRE
 ========================= -->
 
-<section id="sourire">
+<section id="sourire" aria-labelledby="titre-sourire" tabindex="-1">
 
     <div class="petit-titre">Sourire</div>
 
-    <h2>
+    <h2 id="titre-sourire">
         Deux trucs qui fonctionnent toujours.
     </h2>
 
@@ -1048,19 +1242,19 @@ footer {
      SERIES
 ========================= -->
 
-<section id="series">
+<section id="series" aria-labelledby="titre-series" tabindex="-1">
 
     <div class="petit-titre">S'évader</div>
 
-    <h2>
+    <h2 id="titre-series">
         Des univers où retourner.
     </h2>
 
 
-    <div class="galerie-series">
+    <div class="galerie-series" role="group" aria-label="Choisir une série">
 
         <button class="serie-mini active"
-                onclick="changerSerie('gentlemen', this)">
+                onclick="changerSerie('gentlemen', this)" type="button" aria-pressed="true" aria-controls="serie-info" aria-label="The Gentlemen">
 
             <img src="Images/photo8.jpg"
                  alt="The Gentlemen" width="287" height="435" decoding="async" loading="lazy">
@@ -1071,7 +1265,7 @@ footer {
 
 
         <button class="serie-mini"
-                onclick="changerSerie('reacher', this)">
+                onclick="changerSerie('reacher', this)" type="button" aria-pressed="false" aria-controls="serie-info" aria-label="Reacher">
 
             <img src="Images/photo9.jpg"
                  alt="Reacher" width="293" height="387" decoding="async" loading="lazy">
@@ -1082,7 +1276,7 @@ footer {
 
 
         <button class="serie-mini"
-                onclick="changerSerie('stranger', this)">
+                onclick="changerSerie('stranger', this)" type="button" aria-pressed="false" aria-controls="serie-info" aria-label="Stranger Things">
 
             <img src="Images/photo10.jpg"
                  alt="Stranger Things" width="291" height="367" decoding="async" loading="lazy">
@@ -1093,7 +1287,7 @@ footer {
 
 
         <button class="serie-mini"
-                onclick="changerSerie('billions', this)">
+                onclick="changerSerie('billions', this)" type="button" aria-pressed="false" aria-controls="serie-info" aria-label="Billions">
 
             <img src="Images/photo11.jpg"
                  alt="Billions" width="296" height="357" decoding="async" loading="lazy">
@@ -1104,7 +1298,7 @@ footer {
 
 
         <button class="serie-mini"
-                onclick="changerSerie('snowfall', this)">
+                onclick="changerSerie('snowfall', this)" type="button" aria-pressed="false" aria-controls="serie-info" aria-label="Snowfall">
 
             <img src="Images/photo12.webp"
                  alt="Snowfall" width="295" height="588" decoding="async" loading="lazy">
@@ -1117,7 +1311,7 @@ footer {
 
 
     <div class="serie-info"
-         id="serie-info">
+         id="serie-info" role="region" aria-label="Série sélectionnée" aria-live="polite" aria-atomic="true">
 
         <small>Un univers où retourner</small>
 
@@ -1142,11 +1336,11 @@ footer {
      CINEMA
 ========================= -->
 
-<section id="cinema">
+<section id="cinema" aria-labelledby="titre-cinema" tabindex="-1">
 
     <div class="petit-titre">Cinéma</div>
 
-    <h2>
+    <h2 id="titre-cinema">
         Des scènes qui restent.
     </h2>
 
@@ -1170,7 +1364,7 @@ footer {
 ========================= -->
 
 <section class="fin"
-         id="revenir">
+         id="revenir" aria-labelledby="titre-revenir" tabindex="-1">
 
     <div>
 
@@ -1178,7 +1372,7 @@ footer {
             Pour aujourd'hui
         </div>
 
-        <h2>C'est assez.</h2>
+        <h2 id="titre-revenir">C'est assez.</h2>
 
         <p>
             Je pourrai toujours revenir.
@@ -1196,6 +1390,8 @@ footer {
     Mon endroit.
 </footer>
 
+<a class="retour-haut" href="#haut">↑ Retour en haut</a>
+
 
 <script>
 
@@ -1212,16 +1408,18 @@ function changerMusique(style, bouton) {
         .querySelectorAll(".bouton-musique")
         .forEach(function(b) {
             b.classList.remove("actif");
+            b.setAttribute("aria-pressed", "false");
         });
 
     bouton.classList.add("actif");
+    bouton.setAttribute("aria-pressed", "true");
 
 
     if (style === "rap") {
 
         carte.innerHTML = `
             <img class="pochette-musique"
-                 src="Images/photo4.jpg" width="1301" height="561" decoding="async" loading="lazy">
+                 src="Images/photo4.jpg" alt="Illustration pour PARTYNEXTDOOR" width="1301" height="561" decoding="async" loading="lazy">
 
             <div class="musique-texte">
 
@@ -1245,7 +1443,7 @@ function changerMusique(style, bouton) {
 
         carte.innerHTML = `
             <img class="pochette-musique"
-                 src="Images/photo5.webp" width="447" height="443" decoding="async" loading="lazy">
+                 src="Images/photo5.webp" alt="Illustration pour Victoria Monét et Bryson Tiller" width="447" height="443" decoding="async" loading="lazy">
 
             <div class="musique-texte">
 
@@ -1273,7 +1471,7 @@ function changerMusique(style, bouton) {
 
         carte.innerHTML = `
             <img class="pochette-musique"
-                 src="Images/photo6.webp" width="1280" height="698" decoding="async" loading="lazy" srcset="Images/photo6-960.webp 960w, Images/photo6.webp 1280w" sizes="(max-width: 520px) calc(100vw - 60px), (max-width: 800px) calc((100vw - 78px) / 2), 302px">
+                 src="Images/photo6.webp" alt="Illustration pour Rob Mullins et Cal Harris" width="1280" height="698" decoding="async" loading="lazy" srcset="Images/photo6-960.webp 960w, Images/photo6.webp 1280w" sizes="(max-width: 520px) calc(100vw - 60px), (max-width: 800px) calc((100vw - 78px) / 2), 302px">
 
             <div class="musique-texte">
 
@@ -1310,7 +1508,7 @@ function changerMusique(style, bouton) {
 
         carte.innerHTML = `
             <img class="pochette-musique"
-                 src="Images/photo7.jpg" width="266" height="235" decoding="async" loading="lazy">
+                 src="Images/photo7.jpg" alt="Illustration pour Tame Impala" width="266" height="235" decoding="async" loading="lazy">
 
             <div class="musique-texte">
 
@@ -1346,9 +1544,11 @@ function changerSerie(serie, bouton) {
         .querySelectorAll(".serie-mini")
         .forEach(function(b) {
             b.classList.remove("active");
+            b.setAttribute("aria-pressed", "false");
         });
 
     bouton.classList.add("active");
+    bouton.setAttribute("aria-pressed", "true");
 
 
     if (serie === "gentlemen") {
@@ -1504,6 +1704,19 @@ function compteurAnniversaire() {
     }
 }
 
+
+/* Garder le lien parcouru au clavier entièrement visible dans le menu mobile. */
+document.querySelector(".navigation-liens").addEventListener("focusin", function(event) {
+    const lien = event.target.closest("a");
+    if (!lien || !lien.matches(":focus-visible")) {
+        return;
+    }
+    const conteneur = this.getBoundingClientRect();
+    const cible = lien.getBoundingClientRect();
+    if (cible.left < conteneur.left + 7 || cible.right > conteneur.right - 7) {
+        this.scrollLeft += cible.left - conteneur.left - (this.clientWidth - cible.width) / 2;
+    }
+});
 
 compteurAnniversaire();
 
