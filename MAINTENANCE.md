@@ -26,6 +26,13 @@ la préférence de réduction des mouvements, le zoom à 200 % et les liens
 de navigation sans JavaScript. Les pages sont servies sous `/Mon-endroit/`
 pour tester les chemins relatifs d’un site GitHub Pages de projet.
 
+Sur GitHub Actions, les tests utilisent Google Chrome déjà installé sur
+l’image officielle `ubuntu-24.04`. Le workflow affiche sa version et transmet
+son chemin aux tests via `CHROMIUM_PATH`. Il ne lance pas d’installation APT
+ni de téléchargement supplémentaire du navigateur. Si Chrome est absent,
+le contrôle échoue au lieu d’ignorer les tests. La liste officielle des logiciels
+est disponible dans la [documentation de l’image Ubuntu 24.04](https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md).
+
 Pour reproduire les tests navigateur (Node.js 20 ou ultérieur) :
 
 ```sh

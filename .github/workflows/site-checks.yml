@@ -25,7 +25,9 @@ jobs:
         run: python3 scripts/check_site.py
       - name: Installer les outils de test navigateur
         run: npm ci --ignore-scripts --no-audit --no-fund
-      - name: Installer Chromium pour les tests
-        run: npx --no-install playwright install --with-deps chromium
       - name: Tester le mobile, le clavier et l'accessibilité
-        run: npm test
+        run: |
+          CHROMIUM_PATH="$(command -v google-chrome)"
+          export CHROMIUM_PATH
+          "$CHROMIUM_PATH" --version
+          npm test
