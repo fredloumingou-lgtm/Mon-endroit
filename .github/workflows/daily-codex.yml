@@ -1,0 +1,82 @@
+name: Amélioration quotidienne avec Codex
+
+on:
+  schedule:
+    - cron: '30 7 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  improve:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Vérifier la clé API
+        env:
+          OPENAI_KEY_AVAILABLE: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          if [ -z "$OPENAI_KEY_AVAILABLE" ]; then
+            echo "::error::Ajouter OPENAI_API_KEY dans les secrets GitHub du dépôt."
+            exit 1
+          fi
+      - name: Proposer une petite amélioration
+        uses: openai/codex-action@v1
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          permission-profile: ":workspace"
+          prompt: |
+            Tu es le développeur du site Mon-endroit. Lis AGENTS.md et MAINTENANCE.md.
+            Fais UNE amélioration utile, limitée et sûre par jour, notamment ergonomie,
+            esthétique, accessibilité, responsive ou correction de bug.
+            Ne change pas les secrets, les workflows GitHub, les règles de sécurité
+            ni les textes métier sans nécessité. Ne publie rien. N'effectue aucun commit.
+            Privilégie une modification simple et testable.
+      - name: Préparer les modifications
+        if: success()
+        run: git diff --binary > codex.patch
+      - name: Transmettre les modifications
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: codex-patch
+          path: codex.patch
+          if-no-files-found: error
+
+  propose:
+    needs: improve
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: codex-patch
+      - name: Créer une proposition sans publier
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ ! -s codex.patch ]; then
+            echo "Aucune modification aujourd'hui."
+            exit 0
+          fi
+          git apply --check codex.patch
+          git apply codex.patch
+          rm codex.patch
+          branch="codex/daily-${GITHUB_RUN_ID}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add -A
+          git diff --cached --quiet && exit 0
+          git commit -m "Proposition d'amélioration quotidienne Codex"
+          git -c http.extraheader="AUTHORIZATION: basic $(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)" push origin "$branch"
+          gh pr create --base main --head "$branch" --title "Amélioration quotidienne proposée par Codex" --body "Modification générée automatiquement. Les tests GitHub doivent réussir et une validation humaine est nécessaire avant fusion."
