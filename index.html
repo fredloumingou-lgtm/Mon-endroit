@@ -1681,11 +1681,10 @@ function compteurAnniversaire() {
         );
     }
 
-    const jours = Math.round(
-        (deuxAvril - aujourdHui)
-        /
-        (1000 * 60 * 60 * 24)
-    );
+    // Comparer les dates civiles en UTC pour éviter les écarts d'heure d'été.
+    const dateUTC = Date.UTC(aujourdHui.getFullYear(), aujourdHui.getMonth(), aujourdHui.getDate());
+    const anniversaireUTC = Date.UTC(deuxAvril.getFullYear(), deuxAvril.getMonth(), deuxAvril.getDate());
+    const jours = Math.round((anniversaireUTC - dateUTC) / (1000 * 60 * 60 * 24));
 
 
     if (jours === 0) {
